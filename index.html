@@ -2,31 +2,68 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-
-  <!-- ★ スマホ対応に必須 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>GIF Viewer</title>
+  <title>GIF展示</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     body {
       margin: 0;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
     }
 
-    img {
-      width: 100vw;        /* 画面幅いっぱい */
-      max-width: 100%;     /* はみ出さない */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .item {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .item img {
+      width: 100%;
       height: auto;
+      max-width: 800px;
+    }
+
+    .caption {
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0.8;
     }
   </style>
 </head>
 
 <body>
-  <img src="soul.gif" alt="魂">
+  <div class="container">
+
+    <div class="item">
+      <img src="soul.gif" alt="GIF1">
+      <div class="caption">
+        魂をテーマにしたGIF。<br>
+        骨の表現が難しかった。
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="soul2.gif" alt="GIF2">
+      <div class="caption">
+        銃を撃つGIF。爆発のアニメーションと反動を意識した。
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="soul3.gif" alt="GIF3">
+      <div class="caption">
+        ハリネズミが回転するGIF。立体を表現したかった。
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
