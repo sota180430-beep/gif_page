@@ -2,26 +2,31 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- スマホ対応で超重要 -->
+
+  <!-- ★ スマホ対応に必須 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>GIF Viewer</title>
+
   <style>
     body {
       margin: 0;
-      background: #000;
+      background: black;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
+
     img {
-      width: 100vw;      /* 画面いっぱい */
-      max-width: 100%;
+      width: 100vw;        /* 画面幅いっぱい */
+      max-width: 100%;     /* はみ出さない */
       height: auto;
     }
   </style>
 </head>
+
 <body>
-  <img src="soul.gif" alt="GIF">
+  <img src="soul.gif" alt="魂">
 </body>
 </html>
