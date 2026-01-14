@@ -3,78 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GIF展示</title>
+  <title>PIXEL ART</title>
 
   <style>
+    /* ===== 全体 ===== */
     body {
       margin: 0;
-      background: #1a1a1a;
+      background: #1a1a1a; /* 黒寄りグレー */
       color: #eee;
-      font-family: sans-serif;
-      overflow-x: hidden;
+      font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
     }
 
     /* ===== ローディング ===== */
-    #loading {
+    #loader {
       position: fixed;
       inset: 0;
-      background: #1a1a1a;
+      background: #111;
       display: flex;
-      justify-content: center;
       align-items: center;
-      z-index: 1000;
-      transition: opacity 1s ease;
+      justify-content: center;
+      font-size: 24px;
+      letter-spacing: 0.3em;
+      z-index: 999;
+      transition: opacity 1s;
     }
 
-    #loading.hide {
-      opacity: 0;
-      pointer-events: none;
+    /* ===== SNS ===== */
+    .sns {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 100;
     }
 
-    .logo {
-      font-size: 28px;
-      letter-spacing: 0.2em;
-      opacity: 0;
-      animation: fadeIn 1.2s forwards;
+    .sns a {
+      color: #eee;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1px solid #555;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.4);
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .sns a:hover {
+      background: #fff;
+      color: #000;
     }
 
-    /* ===== 本編 ===== */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    .item {
-      margin-bottom: 80px;
+    /* ===== 作品 ===== */
+    section.work {
+      max-width: 600px;
+      margin: 140px auto;
       text-align: center;
+    }
 
+    section.work img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    section.work h2 {
+      font-weight: normal;
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+
+    section.work p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    /* ===== フェードイン ===== */
+    .fade {
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition: 1s;
     }
 
-    .item.show {
+    .fade.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .item img {
-      width: 100%;
-      max-width: 700px;
-      height: auto;
-      display: block;
-      margin: 0 auto 16px;
-    }
-
-    .caption {
-      font-size: 14px;
-      line-height: 1.6;
-      opacity: 0.85;
+    /* ===== フッター ===== */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin: 120px 0 40px;
     }
   </style>
 </head>
@@ -82,57 +103,66 @@
 <body>
 
   <!-- ローディング -->
-  <div id="loading">
-    <div class="logo">PIXEL ART</div>
+  <div id="loader">PIXEL ART</div>
+
+  <!-- SNS -->
+  <div class="sns">
+    <a href="https://x.com/あなたのID" target="_blank">X</a>
+    <a href="https://instagram.com/あなたのID" target="_blank">Instagram</a>
   </div>
 
-  <!-- 本編 -->
-  <div class="container">
-    <div class="item">
-      <img src="soul.gif">
-      <div class="caption">
-        魂をテーマにしたGIF。<br>
-        平面上の動きである程度表現。手の骨に当たる光の加減の調節が複雑だった。
-      </div>
-    </div>
+  <!-- 作品1 -->
+  <section class="work fade">
+    <img src="soul.gif">
+    <h2>SOUL</h2>
+    <p>
+     魂を握られている。平面上の動きである程度表現を行った。手の甲に当たる光の加減が複雑であった。
+    </p>
+  </section>
 
-    <div class="item">
-      <img src="soul2.gif">
-      <div class="caption">
-        銃を撃つ人。パーツごとにレイヤーを分け、動きもそれに合わせて制作した。
-      </div>
-    </div>
+  <!-- 作品2 -->
+  <section class="work fade">
+    <img src="soul2.gif">
+    <h2>GUNNER</h2>
+    <p>
+      銃を撃つ人。パーツごとにレイヤーを分けて、反動による動きも再現しながら制作した。
+    </p>
+  </section>
 
-    <div class="item">
-      <img src="soul3.gif">
-      <div class="caption">
-      ハリネズミが回転する。立体に見えるように表現するため、角度ごとの絵を描いた
-      </div>
-    </div>
-  </div>
+  <!-- 作品3 -->
+  <section class="work fade">
+    <img src="soul3.gif">
+    <h2>HEDGEHOG</h2>
+    <p>
+      回転するハリネズミ。立体に見えるように表現するため、角度ごとの絵を描き立体感を出した。
+    </p>
+  </section>
 
+  <!-- フッター -->
+  <footer>
+    © 2026 SOTA KUWAHARA
+  </footer>
+
+  <!-- JS -->
   <script>
-    /* ローディング解除 */
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("loading").classList.add("hide");
-      }, 1500);
+    /* ローディング */
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.opacity = 0;
+      setTimeout(() => loader.remove(), 1000);
     });
 
-    /* スクロール表示 */
-    const items = document.querySelectorAll(".item");
+    /* スクロールフェード */
+    const targets = document.querySelectorAll('.fade');
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
+    window.addEventListener('scroll', () => {
+      targets.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('show');
         }
       });
-    }, {
-      threshold: 0.2
     });
-
-    items.forEach(item => observer.observe(item));
   </script>
 
 </body>
