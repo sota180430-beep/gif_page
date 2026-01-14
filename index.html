@@ -8,11 +8,41 @@
   <style>
     body {
       margin: 0;
-      background: #1e1e1e; /* 黒寄りグレー */
-      color: #e0e0e0;
+      background: #1a1a1a;
+      color: #eee;
       font-family: sans-serif;
+      overflow-x: hidden;
     }
 
+    /* ===== ローディング ===== */
+    #loading {
+      position: fixed;
+      inset: 0;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 1s ease;
+    }
+
+    #loading.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .logo {
+      font-size: 28px;
+      letter-spacing: 0.2em;
+      opacity: 0;
+      animation: fadeIn 1.2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ===== 本編 ===== */
     .container {
       max-width: 900px;
       margin: 0 auto;
@@ -20,52 +50,90 @@
     }
 
     .item {
-      margin-bottom: 60px;
+      margin-bottom: 80px;
       text-align: center;
+
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .item.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .item img {
       width: 100%;
       max-width: 700px;
       height: auto;
+      display: block;
+      margin: 0 auto 16px;
     }
 
     .caption {
-      margin-top: 16px;
       font-size: 14px;
       line-height: 1.6;
-      opacity: 0.9;
+      opacity: 0.85;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
+  <!-- ローディング -->
+  <div id="loading">
+    <div class="logo">SOUL</div>
+  </div>
+
+  <!-- 本編 -->
+  <div class="container">
     <div class="item">
-      <img src="soul.gif" alt="作品1">
+      <img src="soul.gif">
       <div class="caption">
         魂をテーマにしたGIF。<br>
-        ドットで手の骨を再現。
+        揺らぎと存在の不確かさを表現している。
       </div>
     </div>
 
     <div class="item">
-      <img src="soul2.gif" alt="作品2">
+      <img src="soul2.gif">
       <div class="caption">
-        銃を撃つ人のGIF。<br>
-        爆発の反動やインパクトを意識。
+        形が変化していく過程をループとして記録した。
       </div>
     </div>
 
     <div class="item">
-      <img src="soul3.gif" alt="作品3">
+      <img src="soul3.gif">
       <div class="caption">
-        ハリネズミが回るGIF。<br>
-        立体物に見えるように表現。
+        繰り返し再生されることで意味が曖昧になる構造。
       </div>
     </div>
-
   </div>
+
+  <script>
+    /* ローディング解除 */
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loading").classList.add("hide");
+      }, 1500);
+    });
+
+    /* スクロール表示 */
+    const items = document.querySelectorAll(".item");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    items.forEach(item => observer.observe(item));
+  </script>
+
 </body>
 </html>
